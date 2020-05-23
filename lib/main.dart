@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'pages/home.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -10,7 +12,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'FlutterShare',
       debugShowCheckedModeBanner: false,
-      home: Text("Hello World"),
+      home: Home(),
+      theme: ThemeData(
+        /*primaryswatch equals to MaterialColor, it can takes many
+        shades on the app*/
+        primarySwatch : Colors.deepPurple,
+        accentColor   : Colors.teal,
+      ),
     );
   }
 }
