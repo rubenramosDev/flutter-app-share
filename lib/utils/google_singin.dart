@@ -21,8 +21,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-/*I need to implement singleton model to avoid multiple user at 
-* the same time*/
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 
@@ -66,22 +64,6 @@ Future<String> signInWithGoogle() async {
   return 'signInWithGoogle succeeded: $user';
 }
 
-Future<bool> signOutGoogle() async {
-  await googleSignIn
-      .signOut()
-      .whenComplete(() => true)
-      .catchError((onError) => false);
-  return false;
-}
-
-Future<bool> signInSilently(GoogleSignInAccount account) async {
-  await googleSignIn.signInSilently(suppressErrors: false).then((account) {
-    /*if account exists, is not null return true*/
-    print('Silently login $account');
-
-    return account != null ? true : false;
-  }).catchError((onError) {
-    print('Error: $onError');
-  });
-  return false;
+void signOutGoogle() async {
+  await googleSignIn.signOut();
 }
